@@ -1,0 +1,42 @@
+{
+   "ApplicationName": "string",
+   "RuntimeEnvironment":"FLINK-1_11",
+   "ServiceExecutionRole":"arn:aws:iam::123456789123:role/myrole",
+   "ApplicationConfiguration": { 
+      "ApplicationCodeConfiguration":{
+      "CodeContent":{
+         "S3ContentLocation":{
+            "BucketARN":"arn:aws:s3:::mybucket",
+            "FileKey":"myflink.jar",
+            "ObjectVersion":"AbCdEfGhIjKlMnOpQrStUvWxYz12345"
+            }
+         },
+      "CodeContentType":"ZIPFILE"
+   },   
+      "FlinkApplicationConfiguration": { 
+         "ParallelismConfiguration": { 
+            "AutoScalingEnabled": "true",
+            "ConfigurationType": "CUSTOM",
+            "Parallelism": 4,
+            "ParallelismPerKPU": 4
+         }
+      }
+   }
+}
+
+For more examples and instructions for using request blocks with API actions, see Kinesis Data Analytics API Example Code.
+The following example request for the UpdateApplication action sets parallelism for an existing application:
+{
+   "ApplicationName": "MyApplication",
+   "CurrentApplicationVersionId": 4,
+   "ApplicationConfigurationUpdate": { 
+      "FlinkApplicationConfigurationUpdate": { 
+         "ParallelismConfigurationUpdate": { 
+            "AutoScalingEnabledUpdate": "true",
+            "ConfigurationTypeUpdate": "CUSTOM",
+            "ParallelismPerKPUUpdate": 4,
+            "ParallelismUpdate": 4
+         }
+      }
+   }
+}
